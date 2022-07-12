@@ -1,12 +1,15 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Dashboard</h1>
+<h1>{{ date_selected }}</h1>
 
 {% for event in events %}
 <div class="card">
     <div class="card-content">
       <span class="card-title">{{ event.name }}</span>
       <p>{{ event.timeBeg }} to {{ event.timeEnd}}</p>
+    </div>
+    <div class="card-action">
+      <a href="{% url 'event_delete' event.id %}">Delete</a>
     </div>
 </div>
 {% endfor %}
