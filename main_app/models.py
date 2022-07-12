@@ -15,7 +15,7 @@ class Event(models.Model):
 
     def get_absolute_url(self):
         return reverse('dashboard')
-      
+
     class Meta:
         ordering = ['timeBeg']
 
