@@ -30,8 +30,13 @@ def date_detail(request):
             date.save(commit=False)
             date_selected = date.cleaned_data.get('date')
         events = Event.objects.filter(date=date_selected).filter(user=request.user)
+        otherevents = Event.objects.filter(date=date_selected).exclude(user=request.user)
         print(request.user)
-        return render(request, 'date_detail.html', {'events': events, 'date_selected': date_selected})
+        return render(request, 'date_detail.html', {'events': events, 'date_selected': date_selected, 'otherevents': otherevents})
+      
+      
+def compare_schedules(request):
+    print('Hello')
 
 
 def signup(request):
