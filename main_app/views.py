@@ -18,31 +18,24 @@ def about(request):
 
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
-
-
-# def pick_date (request):
-#     date = DateForm(request)
-#     return redirect('date_detail.html')
+    date_form = DateForm()
+    return render(request, 'dashboard.html', {'date_form': date_form})
 
 
 def date_detail(request):
     if request.method == 'POST':
-        form = request.POST
-        # form.save()
-        # date = request.GET.get('date')
-        print(form, "hello")
-        events = Event.objects.all()
-        return render(request, 'date_detail.html', {'events': events})
-    else:
-        return render(request, 'about.html')
+        date = DateForm(request.POST)
+        if date.is_valid():
+            date.save(commit=False)
+            date_selected = date.cleaned_data.get('date')
+        events = Event.objects.filter(date=date_selected)
+        return render(request, 'date_detail.html', {'events': events, 'date_selected': date_selected})
 
 
 def signup(request):
     error_message = ''
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        print(form)
         try:
             user = form.save()
             login(request, user)
@@ -63,3 +56,5 @@ class EventCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+      
+      
