@@ -15,10 +15,10 @@ class Event(models.Model):
 
     def get_absolute_url(self):
         return reverse('dashboard')
+      
+    class Meta:
+        ordering = ['timeBeg']
 
 
 class Date(models.Model):
     date = models.DateField()
-
-    # def __str__(self):
-    #     return self.name
