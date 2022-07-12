@@ -1,8 +1,14 @@
 from django.forms import ModelForm
-# from .models import Date
+from .models import Date
+
+
+# class DateForm(ModelForm):
+#     class Meta:
+#         model = Date
+#         fields = ['date']
 
 
 class DateForm(ModelForm):
     class Meta:
-        # model = Date
-        fields = ['date']
+        model = Date
+        fields =['date']
