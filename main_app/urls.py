@@ -1,10 +1,7 @@
 from django.contrib import admin
-from django.urls import path, include, register_converter
+from django.urls import path, include
 
 from . import views
-from .converters import DateConverter
-
-register_converter(DateConverter, 'date_selected')
 
 urlpatterns = [
     path('', views.home, name='home'),
