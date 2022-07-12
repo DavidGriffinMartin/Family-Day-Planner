@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -28,7 +29,8 @@ def date_detail(request):
         if date.is_valid():
             date.save(commit=False)
             date_selected = date.cleaned_data.get('date')
-        events = Event.objects.filter(date=date_selected)
+        events = Event.objects.filter(date=date_selected).filter(user=request.user)
+        print(request.user)
         return render(request, 'date_detail.html', {'events': events, 'date_selected': date_selected})
 
 
@@ -57,4 +59,6 @@ class EventCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
       
-      
+class EventDelete(LoginRequiredMixin, DeleteView):
+    model = Event
+    success_url = '/dashboard'
