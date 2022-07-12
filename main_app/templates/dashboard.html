@@ -1,11 +1,11 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Dashboard</h1>
+<h1>Hello {{ request.user }}!</h1>
+<p>Care to check your schedule?</p>
 
 <form action="{% url 'date_detail' %}" method="POST">
   {% csrf_token %}
   {{ date_form.as_p }}
-  <!-- <input type="date" id="date" /> -->
   <input type="submit" class="btn" value="See Schedule" />
 </form>
 
