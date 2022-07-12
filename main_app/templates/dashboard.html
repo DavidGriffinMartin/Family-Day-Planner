@@ -4,7 +4,8 @@
 
 <form action="{% url 'date_detail' %}" method="POST">
   {% csrf_token %}
-  <input type="date" id="date" />
+  {{ date_form.as_p }}
+  <!-- <input type="date" id="date" /> -->
   <input type="submit" class="btn" value="See Schedule" />
 </form>
 
