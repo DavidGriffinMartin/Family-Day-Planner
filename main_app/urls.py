@@ -11,4 +11,5 @@ urlpatterns = [
     path('dashboard/date_detail/', views.date_detail, name='date_detail'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', views.signup, name='signup'),
+    path('event/<int:pk>/delete/', views.EventDelete.as_view(), name='event_delete'),
 ]
