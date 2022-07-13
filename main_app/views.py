@@ -48,7 +48,6 @@ def date_detail(request):
         otherevents = Event.objects.filter(
             date=date_selected).exclude(user=request.user)
         users = User.objects.all()
-        print(request.user, users)
         return render(request, 'date_detail.html', {'events': events, 'otherevents': otherevents, 'date_selected': date_selected, 'users': users})
 
 
@@ -76,6 +75,11 @@ class EventCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+class EventUpdate(LoginRequiredMixin, UpdateView):
+    model = Event
+    fields = ['date', 'name', 'timeBeg', 'timeEnd']
 
 
 class EventDelete(LoginRequiredMixin, DeleteView):
