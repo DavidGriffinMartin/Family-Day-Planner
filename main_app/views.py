@@ -4,6 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Event
@@ -16,6 +17,17 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
+
+
+@login_required
+def users_profile(request, user_id):
+    user = User.objects.get(id=user_id)
+    return render(request, 'profile.html', {'user': user})
 
 
 @login_required
@@ -35,8 +47,9 @@ def date_detail(request):
             date=date_selected).filter(user=request.user)
         otherevents = Event.objects.filter(
             date=date_selected).exclude(user=request.user)
-        print(request.user)
-        return render(request, 'date_detail.html', {'events': events, 'otherevents': otherevents, 'date_selected': date_selected})
+        users = User.objects.all()
+        print(request.user, users)
+        return render(request, 'date_detail.html', {'events': events, 'otherevents': otherevents, 'date_selected': date_selected, 'users': users})
 
 
 def signup(request):
@@ -46,7 +59,7 @@ def signup(request):
         try:
             user = form.save()
             login(request, user)
-            return redirect('index')
+            return redirect('dashboard')
         except:
             error_message = form.errors
             print(form.errors)
