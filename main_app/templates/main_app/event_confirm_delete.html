@@ -3,15 +3,15 @@
 <h1>Delete Event</h1>
 <hr />
 
-<h4>
+<p>
   Are you sure you want to delete
-  <span class="teal-text">{{ event.name }}</span>?
-</h4>
+  <span class="teal-text">{{ event.name }}</span>from <span class="teal-text">{{ event.timeBeg}} to {{ event.timeEnd}}</span>?
+</p>
 
 <form action="" method="POST">
   {% csrf_token %}
-  <input class="btn red" type="submit" value="Yes - Delete" />
-  <a class="btn" href="{% url 'date_detail' %}">Cancel</a>
+  <input class="btn red" type="submit" value="Delete" />
+  <a class="btn" href="{% url 'dashboard' %}">Cancel</a>
 </form>
 
 {% endblock %}
