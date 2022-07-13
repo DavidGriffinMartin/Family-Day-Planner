@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <h1>{{ date_selected }}</h1>
+<hr />
 
 <div class="row">
   <div class="col s6">
@@ -18,12 +19,15 @@
     {% endfor %}
   </div>
   <div class="col s6">
-    <h5>Family's Tasks</h5>
+    <h5>Your Family's Tasks</h5>
     {% for otherevent in otherevents %}
     <div class="card">
       <div class="card-content">
         <span class="card-title">{{ otherevent.name }}</span>
         <p>{{ otherevent.timeBeg }} to {{ otherevent.timeEnd}}</p>
+      </div>
+      <div class="card-action">
+        <a href="">{{ otherevent.user }}</a>
       </div>
     </div>
     {% endfor %}
