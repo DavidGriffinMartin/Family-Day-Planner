@@ -5,4 +5,4 @@ from .models import Date
 class DateForm(ModelForm):
     class Meta:
         model = Date
-        fields =['date']
+        fields = ['date']

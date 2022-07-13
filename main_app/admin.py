@@ -5,4 +5,3 @@ from .models import Event, Date
 
 admin.site.register(Event)
 admin.site.register(Date)
-
