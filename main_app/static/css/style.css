@@ -13,3 +13,18 @@ footer {
   padding-bottom: 20px;
   text-align: right;
 }
+
+.datepicker-date-display {
+  background-color: black
+}
+
+.datepicker-cancel,
+.datepicker-done,
+.datepicker-table {
+  color: black
+}
+
+.datepicker-table td.is-today {
+  color: white;
+  background-color: black;
+}
