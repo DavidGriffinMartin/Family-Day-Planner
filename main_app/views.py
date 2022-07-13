@@ -18,25 +18,25 @@ def about(request):
     return render(request, 'about.html')
 
 
+@login_required
 def dashboard(request):
     date_form = DateForm()
     return render(request, 'dashboard.html', {'date_form': date_form})
 
 
+@login_required
 def date_detail(request):
     if request.method == 'POST':
         date = DateForm(request.POST)
         if date.is_valid():
             date.save(commit=False)
             date_selected = date.cleaned_data.get('date')
-        events = Event.objects.filter(date=date_selected).filter(user=request.user)
-        otherevents = Event.objects.filter(date=date_selected).exclude(user=request.user)
+        events = Event.objects.filter(
+            date=date_selected).filter(user=request.user)
+        otherevents = Event.objects.filter(
+            date=date_selected).exclude(user=request.user)
         print(request.user)
-        return render(request, 'date_detail.html', {'events': events, 'date_selected': date_selected, 'otherevents': otherevents})
-      
-      
-def compare_schedules(request):
-    print('Hello')
+        return render(request, 'date_detail.html', {'events': events, 'otherevents': otherevents, 'date_selected': date_selected})
 
 
 def signup(request):
@@ -63,7 +63,8 @@ class EventCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-      
+
+
 class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
     success_url = '/dashboard'
