@@ -27,7 +27,9 @@
         <p>{{ otherevent.timeBeg }} to {{ otherevent.timeEnd}}</p>
       </div>
       <div class="card-action">
-        <a href="">{{ otherevent.user }}</a>
+        <a href="{% url 'users_profile' otherevent.user.id %}"
+          >{{ otherevent.user }}</a
+        >
       </div>
     </div>
     {% endfor %}
