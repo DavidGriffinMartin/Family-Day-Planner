@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Hello {{ request.user }}!</h1>
+<h1>Hello <span class="teal-text">{{ request.user }}!</span></h1>
 <p>Care to check your schedule?</p>
 
 <form action="{% url 'date_detail' %}" method="POST">

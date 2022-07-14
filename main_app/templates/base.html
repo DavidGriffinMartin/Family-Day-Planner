@@ -36,7 +36,7 @@
             {% if user.is_authenticated %}
             <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
             <li><a href="{% url 'event_create' %}">Add an Event</a></li>
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ request.user }}<i class="material-icons right">X</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><span class="teal-text">{{ request.user }}</span><i class="material-icons right">X</i></a></li>
             <ul id="dropdown1" class="dropdown-content">
               <li><a href="{% url 'profile' %}">Profile</a></li>
               <li><a href="{% url 'logout' %}">Log Out</a></li>

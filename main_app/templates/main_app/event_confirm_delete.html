@@ -1,12 +1,12 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Delete Event</h1>
+<h1>Delete <span class="teal-text">Event</span></h1>
 <hr />
 
-<p>
+<h6>
   Are you sure you want to delete
-  <span class="teal-text">{{ event.name }}</span>from <span class="teal-text">{{ event.timeBeg}} to {{ event.timeEnd}}</span>?
-</p>
+  <span class="teal-text">{{ event.name }} </span>from <span class="teal-text">{{ event.timeBeg}} to {{ event.timeEnd}}</span>?
+</h6>
 
 <form action="" method="POST">
   {% csrf_token %}
