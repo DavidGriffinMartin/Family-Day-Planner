@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from datetime import datetime, timedelta
+from django.db.models.functions import Trunc
+from django.db.models import DateField
 
 from .models import Event
 from .forms import DateForm
@@ -20,20 +22,28 @@ def about(request):
 
 
 @login_required
+def dashboard(request):
+    date_form = DateForm()
+    return render(request, 'dashboard.html', {'date_form': date_form})
+
+
+@login_required
 def profile(request):
-    return render(request, 'profile.html')
+    startdate = datetime.today()
+    enddate = startdate + timedelta(days=365)
+    events = Event.objects.filter(user=request.user, date__range=[startdate, enddate]).order_by(
+        Trunc('date', 'day', output_field=DateField()))
+    return render(request, 'profile.html', {'events': events})
 
 
 @login_required
 def users_profile(request, user_id):
     user = User.objects.get(id=user_id)
-    return render(request, 'profile.html', {'user': user})
-
-
-@login_required
-def dashboard(request):
-    date_form = DateForm()
-    return render(request, 'dashboard.html', {'date_form': date_form})
+    startdate = datetime.today()
+    enddate = startdate + timedelta(days=365)
+    events = Event.objects.filter(user=user_id, date__range=[startdate, enddate]).order_by(
+        Trunc('date', 'day', output_field=DateField()))
+    return render(request, 'profile.html', {'user': user, 'events': events})
 
 
 @login_required
