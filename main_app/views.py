@@ -32,7 +32,9 @@ def profile(request):
     startdate = datetime.today()
     enddate = startdate + timedelta(days=365)
     events = Event.objects.filter(user=request.user, date__range=[startdate, enddate]).order_by(
-        Trunc('date', 'day', output_field=DateField()))
+        Trunc('date', 'day', output_field=DateField()),
+        'timeBeg',
+    )
     return render(request, 'profile.html', {'events': events})
 
 
@@ -42,7 +44,9 @@ def users_profile(request, user_id):
     startdate = datetime.today()
     enddate = startdate + timedelta(days=365)
     events = Event.objects.filter(user=user_id, date__range=[startdate, enddate]).order_by(
-        Trunc('date', 'day', output_field=DateField()))
+        Trunc('date', 'day', output_field=DateField()),
+        'timeBeg',
+    )
     return render(request, 'profile.html', {'user': user, 'events': events})
 
 
