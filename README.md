@@ -14,7 +14,11 @@ I've created a web application that allows a User to Sign Up, Log In, and start 
 
 <h3>User Interface:</h3>
 
+image.png
 
+<h3>Date Display:</h3>
+
+image.png
 
 <h3>Technologies Used:</h3>
 
@@ -22,4 +26,7 @@ I've created a web application that allows a User to Sign Up, Log In, and start 
 
 <h3>Future Enhancements:</h3>
 
-<li></li>
+<li>Ability to add multiple dats to an Event.</li>
+<li>Ability to scroll back and forth between days.</li>
+<li>Updated User profile page with Photos and details.</li>
+<li>Drop down lists on upcomming Event days on the Users profile page.</li>
