@@ -78,7 +78,11 @@ WSGI_APPLICATION = 'project004.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'schedule',
+        'NAME': 'd7uadpv4kisf9n',
+        'USER': 'uxmgslfusgmoeb',
+        'PASSWORD': '1c398b73c677f170ba02c12da580d102e795624a43ce729312fbb12a8f8de9e7',
+        'HOST': 'ec2-23-20-224-166.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
