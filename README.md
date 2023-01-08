@@ -14,11 +14,11 @@ I've created a web application that allows a User to Sign Up, Log In, and start 
 
 <h3>User Interface:</h3>
 
-image.png
+![image](https://user-images.githubusercontent.com/105015655/178994605-5972e037-85eb-4df1-9bb9-db9e7e0b281b.jpeg)
 
 <h3>Date Display:</h3>
 
-image.png
+![image](https://user-images.githubusercontent.com/105015655/178994544-7c19d15c-594f-412c-8736-ca62d0bd4a97.jpeg)
 
 <h3>Technologies Used:</h3>
 
